@@ -41,7 +41,7 @@
 		<form-bean name="bookForm" type="form.BookForm" />
 		<form-bean name="cartForm" type="form.CartForm" />
 		<form-bean name="cartItemForm" type="form.CartItemForm" />
-		<form-bean name="orderDetail" type="form.OrderDetail" />
+		<form-bean name="orderForm" type="form.OrderForm" />
 		<form-bean name="paymentForm" type="form.Payment" />
 		<form-bean name="searchForm" type="form.SearchForm" />
 
@@ -156,6 +156,15 @@
 
 		<action
 			path="/confirm-order"
+			type="action.OrderAction"
+			name="orderForm"
+			scope="request">
+			<forward name="success" path="/payment.jsp" />
+			<forward name="failure" path="/error.jsp" />
+		</action>
+
+		<action
+			path="/cancel-order"
 			type="action.OrderAction"
 			name="orderForm"
 			scope="request">

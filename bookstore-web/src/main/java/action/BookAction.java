@@ -30,15 +30,17 @@ public class BookAction extends Action {
 		UserForm user = (UserForm) session.getAttribute("user");
 		
 		ServletContext context = getServlet().getServletContext();
-		context.setAttribute("appTitle", "Bookstore");
+		
 
 		switch (path) {
 		case "/all-books":
+			context.setAttribute("appTitle", "Bookstore");
 			ArrayList<BookForm> books = userService.getAllBooks();
 			System.out.println(books);
 			request.getSession().setAttribute("booksList", books);
 			break;
 		case "/search-book":
+			context.setAttribute("appTitle", "Bookstore");
 			SearchForm searchForm = (SearchForm) form;
 			String searchString = request.getParameter("searchString");
 			ArrayList<BookForm> searchResults = userService.searchBooks(searchForm.getSearchParam());

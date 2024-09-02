@@ -202,7 +202,7 @@ public class DAOimpl implements DAO {
 	@Override
 	public CartItemForm findCartItemByCart(long cartId, long bookId) {
 		try (Connection connection = connectDB.getConnection();
-				PreparedStatement pr = connection.prepareStatement( SELECT_CART_ITEM_PRODUCT)) {
+				PreparedStatement pr = connection.prepareStatement(SELECT_CART_ITEM_PRODUCT)) {
 			pr.setLong(1, cartId);
 			pr.setLong(2, bookId);
 			try (ResultSet rs = pr.executeQuery()) {

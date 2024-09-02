@@ -15,7 +15,8 @@
           crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
+	<jsp:include page="/header.jsp" />
+    <div class="container search-book">
         <div class="row justify-content-center">
             <div class="col-6 my-5">
                 <h1>Search book</h1>

@@ -54,8 +54,6 @@ public class UserForm extends ActionForm implements Serializable{
 	@Override
 	public String toString() {
 		return "UserForm [id=" + id + ", username=" + username + ", password=" + password + "]";
-	}
-
-	
+	}	
 	
 }

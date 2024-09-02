@@ -16,31 +16,34 @@ import service.UserService;
 
 public class OrderAction extends Action {
 
-    private UserService userService = new UserService();
+	private UserService userService = new UserService();
 
-    @Override
-    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
+	@Override
+	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 
-        String path = mapping.getPath();
-        HttpSession session = request.getSession();
-        UserForm user = (UserForm) session.getAttribute("user");
+		String path = mapping.getPath();
+		HttpSession session = request.getSession();
+		UserForm user = (UserForm) session.getAttribute("user");
 
-        switch (path) {
-            case "/confirm-order":
-                PaymentForm paymentForm = (PaymentForm) form;
-                long paymentId = userService.pay(paymentForm); 
-               // order.setPaymentId(paymentId);
-               // userService.sendOrder(order);
-                return mapping.findForward("success");
+		switch (path) {
+		case "/confirm-order":
+			return mapping.findForward("success");
 
-            case "/send-order":
-                OrderForm orderDetails = (OrderForm) form;
-                userService.sendOrder(orderDetails);
-                return mapping.findForward("success");
+		case "/payment":
+			PaymentForm paymentForm = (PaymentForm) form;
+			long paymentId = userService.pay(paymentForm);
+			 session.setAttribute("paymentId", paymentId);
+			return mapping.findForward("success");
 
-            default:
-                return mapping.findForward("error");
-        }
-    }
+		case "/send-order":
+			OrderForm orderDetails = (OrderForm) form;
+			orderDetails.setPaymentId((long) session.getAttribute("paymentId"));
+			userService.sendOrder(orderDetails);
+			return mapping.findForward("success");
+
+		default:
+			return mapping.findForward("error");
+		}
+	}
 }

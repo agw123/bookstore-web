@@ -42,12 +42,12 @@ public class UserService {
     	return daoImpl.updateCartItem(cartItemId, quantity);
     }
     
-    public ArrayList<CartItemForm> showCart(long userId) {
-    	return daoImpl.showCart(userId);
+    public ArrayList<CartItemForm> showCart(long cartId) {
+    	return daoImpl.showCart(cartId);
     }
     
-    public CartItemForm findCartItemByCart(long userId, long bookId) {
-    	return daoImpl.findCartItemByCart(userId, bookId);
+    public CartItemForm findCartItemByCart(long cartId, long bookId) {
+    	return daoImpl.findCartItemByCart(cartId, bookId);
     }
     
     public int sendOrder(OrderForm order) {
